@@ -1,3 +1,5 @@
+# JKM 2015, CMake port of tclap
+
 SET(TCLAP_VERSION_MAJOR    1)
 SET(TCLAP_VERSION_MINOR    2)
 SET(TCLAP_VERSION_RELEASE  1)
@@ -8,6 +10,10 @@ MATH(EXPR TCLAP_VERSION_DECIMAL "${TCLAP_VERSION_MAJOR} * 10000 + ${TCLAP_VERSIO
 PROJECT(tclap)
 
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8.7)
+
+# include tclap headers (for building tests)
+
+set(TCLAP_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 ################################################################
 
@@ -24,7 +30,7 @@ tclap Configuration Summary
 
     General flags:
       CC                        ${CMAKE_C_COMPILER}
-      CXX (not used)            ${CMAKE_CXX_COMPILER}
+      CXX                       ${CMAKE_CXX_COMPILER}
       CFLAGS                    ${CMAKE_C_FLAGS}
       CXXFLAGS                  ${CMAKE_CXX_FLAGS}
       LDFLAGS                   ${CMAKE_EXE_LINKER_FLAGS}
@@ -34,6 +40,6 @@ tclap Configuration Summary
 )
 
 add_subdirectory(include)
-# add_subdirectory(examples)
+add_subdirectory(examples)
 # add_subdirectory(docs)
 # add_subdirectory(tests)
