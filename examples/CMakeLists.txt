@@ -29,3 +29,11 @@ TCLAP_ADD_TEST(test18)
 TCLAP_ADD_TEST(test19)
 TCLAP_ADD_TEST(test20)
 TCLAP_ADD_TEST(test21)
+
+# test17 has two source files
+
+add_executable(test17 test17.cpp test17-a.cpp)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/../tests/test17.sh ${CMAKE_CURRENT_BINARY_DIR}/../tests/test17.sh COPYONLY)
+add_test(NAME test17 COMMAND test17.sh WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/../tests)
+set_tests_properties(test17 PROPERTIES ENVIRONMENT srcdir=${CMAKE_CURRENT_SOURCE_DIR}/../tests)
+install(TARGETS test17 DESTINATION examples)
