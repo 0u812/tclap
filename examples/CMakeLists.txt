@@ -1,10 +1,10 @@
 include_directories(${TCLAP_INCLUDE_DIR})
 
-enable_testing()
-
 function(TCLAP_ADD_EXAMPLE TEST_NAME)
     add_executable(${TEST_NAME} ${TEST_NAME}.cpp)
-    add_test(NAME ${TEST_NAME}_example COMMAND ${TEST_NAME})
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/../tests/${TEST_NAME}.sh ${CMAKE_CURRENT_BINARY_DIR}/../tests/${TEST_NAME}.sh COPYONLY)
+    add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME}.sh WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/../tests)
+    set_tests_properties(${TEST_NAME} PROPERTIES ENVIRONMENT srcdir=${CMAKE_CURRENT_SOURCE_DIR}/../tests)
     install(TARGETS ${TEST_NAME} DESTINATION examples)
 endfunction()
 
